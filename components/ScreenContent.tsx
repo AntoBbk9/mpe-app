@@ -1,25 +1,14 @@
-import { Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Carousel from 'components/modal/Carousel';
+import { Header } from 'components/layout/header';
 
-import { EditScreenInfo } from './EditScreenInfo';
-
-type ScreenContentProps = {
-  title: string;
-  path: string;
-  children?: React.ReactNode;
-};
-
-export const ScreenContent = ({ title, path, children }: ScreenContentProps) => {
+export const ScreenContent = () => {
   return (
-    <View className={styles.container}>
-      <Text className={styles.title}>{title}</Text>
-      <View className={styles.separator} />
-      <EditScreenInfo path={path} />
-      {children}
-    </View>
+    <>
+      <Header />
+      <SafeAreaView className="flex-1 bg-white mt-0">
+        <Carousel />
+      </SafeAreaView>
+    </>
   );
-};
-const styles = {
-  container: `items-center flex-1 justify-center`,
-  separator: `h-[1px] my-7 w-4/5 bg-gray-200`,
-  title: `text-xl font-bold`,
 };
