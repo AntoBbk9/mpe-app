@@ -1,13 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, FlatList, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { View, FlatList, Image, StyleSheet, Dimensions, TouchableOpacity, Text } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
 const images = [
-  { id: '1', src: require('assets/carousel-1.jpg') },
-  { id: '2', src: require('assets/carousel-2.jpg') },
-  { id: '3', src: require('assets/carousel-3.jpg') },
-  { id: '4', src: require('assets/carousel-4.jpg') },
+   { id: '1', src: require('assets/carousel-1.jpg'), caption: "Bienvenue sur notre plateforme" },
+    { id: '2', src: require('assets/carousel-2.jpg'), caption: "Apprenez avec les meilleurs" },
+    { id: '3', src: require('assets/carousel-3.jpg'), caption: "Participez aux formations" },
+    { id: '4', src: require('assets/carousel-4.jpg'), caption: "Rejoignez notre communauté" },
 ];
 
 const Carousel = () => {
@@ -23,7 +23,6 @@ const Carousel = () => {
     return () => clearInterval(interval);
   }, [currentIndex]);
 
-  // Fonction pour gérer swipe manuel et mise à jour currentIndex
   const onViewableItemsChanged = useRef(({ viewableItems }) => {
     if (viewableItems.length > 0) {
       setCurrentIndex(viewableItems[0].index);
@@ -42,7 +41,13 @@ const Carousel = () => {
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
-          <Image source={item.src} style={styles.image} />
+           <View>
+              <Image source={item.src} style={styles.image} />
+              <View className="absolute inset-0 flex justify-center items-start px-4 py-12">
+                <View className="absolute inset-0 bg-black/50" />
+                <Text className="text-white text-[3rem] font-semibold text-left">{item.caption}</Text>
+              </View>
+           </View>
         )}
         getItemLayout={(_, index) => ({
           length: width,
