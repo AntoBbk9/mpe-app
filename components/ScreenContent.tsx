@@ -7,7 +7,7 @@ export const ScreenContent = () => {
   return (
     <>
       <Header />
-      <SafeAreaView className="flex-1 bg-white mt-0">
+      <SafeAreaView className="flex-1 bg-white mx-0">
         <ScrollView>
           <Carousel />
           <View className="mt-3 relative h-[40rem] w-full">
